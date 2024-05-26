@@ -16,7 +16,7 @@ public class InputView {
         while (true) {
             try {
                 amountOfMoney = Integer.parseInt(readLine());
-                if (validation(amountOfMoney)) {
+                if (validationMoney(amountOfMoney)) {
                     break;
                 }
             } catch (NumberFormatException e) {
@@ -39,7 +39,7 @@ public class InputView {
         // 예외2. 1000원 단위가 아닌 경우
 
 
-    public static boolean validation(int amountOfMoney){
+    public static boolean validationMoney(int amountOfMoney){
         try{
         if (amountOfMoney % 1000 != 0) {
             throw new IllegalArgumentException();
@@ -51,17 +51,41 @@ public class InputView {
         return true;
     }
 
-    public static List<Integer> goalNumber(){
-        // string 쉼표로 구분해서 배열에 넣고 싶음
-        String []stringArray = readLine().split(",");
-        int[] intArray = Arrays.stream(stringArray)
-                .mapToInt(Integer::parseInt)
-                .toArray();
+    public static List<Integer> goalNumber() {
         List<Integer> arrayList = new ArrayList<>();
-        for(int i = 0; i<stringArray.length; i++){
-            arrayList.add(Integer.parseInt(stringArray[i]));
+        while (true) {
+            String[] stringArray = readLine().split(",");
+            try {
+                for (int i = 0; i < stringArray.length; i++) {
+                    arrayList.add(Integer.parseInt(stringArray[i])); // 변환하기 불편
+                    // 예외1. 숫자로 변환이 안 되는 경우
+                }
+            } catch (NumberFormatException e) {
+                try {
+                    throw new IllegalArgumentException();
+                } catch (IllegalArgumentException e2) {
+                    System.out.println("[ERROR] 잘못된 값을 입력했습니다. 다시 입력해주세요.");
+                    continue;
+                }
+            }
+            if (validationGoalNumber(stringArray)) {
+                break;
+            }
         }
-        // 변환하기 불편하다
         return arrayList;
     }
+
+    public static boolean validationGoalNumber(String[] stringArray){
+        // 예외1. 숫자 여섯개가 맞는지
+        try {
+            if (stringArray.length != 6) {
+                throw new IllegalArgumentException();
+            }
+        }catch(IllegalArgumentException e){
+            System.out.println("[ERROR] 잘못된 값을 입력했습니다. 다시 입력해주세요.");
+            return false;
+        }
+        return true;
+    }
+
 }
