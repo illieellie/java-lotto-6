@@ -1,8 +1,6 @@
 package lotto;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
@@ -55,6 +53,7 @@ public class InputView {
     public static List<Integer> goalNumber() {
         List<Integer> arrayList = new ArrayList<>();
         while (true) {
+            arrayList.clear();
             String[] stringArray = readLine().split(",");
             try {
                 for (int i = 0; i < stringArray.length; i++) {
@@ -69,17 +68,19 @@ public class InputView {
                     continue;
                 }
             }
-            if (validationGoalNumber(stringArray)) {
+            if (validationGoalNumber(arrayList)) {
                 break;
             }
         }
         return arrayList;
     }
 
-    public static boolean validationGoalNumber(String[] stringArray) {
+    public static boolean validationGoalNumber(List<Integer> arrayList) {
         // 예외1. 숫자 여섯개가 맞는지
+        Set<Integer> tempSet = new HashSet<>();
+        tempSet.addAll(arrayList);
         try {
-            if (stringArray.length != 6) {
+            if (tempSet.size() != 6) {
                 throw new IllegalArgumentException();
             }
         } catch (IllegalArgumentException e) {

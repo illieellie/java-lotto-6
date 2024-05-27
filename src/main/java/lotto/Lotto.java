@@ -11,6 +11,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        validateDuplicate(numbers);
         this.numbers = numbers;
     }
 
@@ -19,25 +20,21 @@ public class Lotto {
             throw new IllegalArgumentException();
         }
     }
-
-    public int random(int bonusNumber) {
-
-        int grade = 0;
-        Set<Integer> randomNumber = new HashSet<>();
-        while (randomNumber.size() != 6) {
-            List<Integer> temp = pickUniqueNumbersInRange(1, 45, 1);
-            randomNumber.add(temp.get(0));
+    private void validateDuplicate(List<Integer> numbers) {
+        Set<Integer>tempSet = new HashSet<>();
+        tempSet.addAll(numbers);
+        if (tempSet.size() != 6) {
+            throw new IllegalArgumentException();
         }
-        OutputView.printList(randomNumber.stream().sorted());
-        // 당첨이 되었는지 검사
-        grade = checkGoal(randomNumber, bonusNumber);
-
-        return grade;
     }
 
-    private int checkGoal(Set<Integer> randomNumber, int bonusNumber) {
+    int checkGoal(int bonusNumber, List<Integer> list) {
         // List<Integer> numbers 와 비교
         int score = 0;
+
+        Set<Integer> randomNumber = new HashSet<>();
+        randomNumber.addAll(list);
+
         for (int i = 0; i < 6; i++) {
             int temp = numbers.get(i);
             if (randomNumber.contains(temp)) {
