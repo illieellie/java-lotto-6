@@ -17,14 +17,13 @@ public class Application {
 
         for (int i = 0; i < amountOfMoney; i++) {
             List<Integer> itemList = new ArrayList<>();
-            Set<Integer> randomNumber = new HashSet<>();
-
-            while (randomNumber.size() != 6) {
-                int temp = pickUniqueNumbersInRange(1, 45, 1).get(0);
-                randomNumber.add(temp);
+            while (true) {
+                List<Integer> temp = pickUniqueNumbersInRange(1, 45, 6);
+                if(temp.size()==6){
+                    itemList.addAll(temp.stream().toList());
+                    break; // 중복이 없으면
+                }
             }
-
-            itemList.addAll(randomNumber.stream().toList());
             Collections.sort(itemList); // 정렬
 
             OutputView.printList(itemList);
