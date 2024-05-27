@@ -3,20 +3,37 @@ package lotto;
 import java.util.stream.Stream;
 
 public class OutputView {
+
+    public static void printMent1(){
+        System.out.println("구입금액을 입력해 주세요.");
+    }
+    public static void printMent2(){
+        System.out.println("당첨 번호를 입력해 주세요.");
+    }
+    public static void printMent3(){
+        System.out.println("보너스 번호를 입력해 주세요.");
+    }
+
     public static void printNum(int amountOfMoney) {
         System.out.println(amountOfMoney + "개를 구매했습니다.");
     }
 
-
     public static void printList(Stream<Integer> sorted) {
-        System.out.println(sorted);
-        // 어떻게 출력되는지 볼것
+        System.out.println(sorted.toList());
     }
 
-    // 담청 결과 return
-//        - 1등: 6개 번호 일치 / 2,000,000,000원
-//        - 2등: 5개 번호 + 보너스 번호 일치 / 30,000,000원
-//        - 3등: 5개 번호 일치 / 1,500,000원
-//        - 4등: 4개 번호 일치 / 50,000원
-//        - 5등: 3개 번호 일치 / 5,000원
+    public static void printGrade(int[] result) {
+        String s = "당첨 통계\n---\n" + "3개 일치 (5,000원) - " + result[5] + "개\n" +
+                "4개 일치 (50,000원) - " + result[4] + "개\n" +
+                "5개 일치 (1,500,000원) - " + result[3] + "개\n" +
+                "5개 일치, 보너스 볼 일치 (30,000,000원) - " + result[2] + "개\n" +
+                "6개 일치 (2,000,000,000원) - " + result[1] + "개\n";
+                System.out.println(s);
+    }
+
+    public static void printResult(double result){
+        System.out.println("총 수익률은 "+String.format("%.1f", result)+"%입니다.");
+
+    }
+
 }

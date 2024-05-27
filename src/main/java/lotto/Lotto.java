@@ -60,10 +60,17 @@ public class Lotto {
         return arr[score];
     }
 
-    public void result(int[] result) {
+    public void result(int[] result, int investmentMoney) {
+        double []arr = {0, 2000000000, 30000000, 1500000, 50000, 5000};
+        double profits = result[1]*arr[1] + result[2]*arr[2] + result[3]*arr[3] +
+                result[4]*arr[4] + result[5]*arr[5];
+        OutputView.printResult(profits/investmentMoney*0.01);
+
         // 수익률 반환
+        // 수익금/투자금*0.001
+        // 소수점 둘째 자리에서 반올림
+
     }
 
 
-    // TODO: 추가 기능 구현
 }
