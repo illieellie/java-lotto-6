@@ -44,12 +44,52 @@ class ApplicationTest extends NsTest {
                 List.of(2, 13, 22, 32, 38, 45),
                 List.of(1, 3, 5, 14, 22, 45)
         );
+    }@Test
+    void 당첨_테스트_2() {
+        assertRandomUniqueNumbersInRangeTest(
+                () -> {
+                    run("1000", "1,2,3,4,5,6", "7");
+                    assertThat(output()).contains(
+                            "1개를 구매했습니다.",
+                            "[1, 2, 3, 4, 5, 6]",
+                            "3개 일치 (5,000원) - 0개",
+                            "4개 일치 (50,000원) - 0개",
+                            "5개 일치 (1,500,000원) - 0개",
+                            "5개 일치, 보너스 볼 일치 (30,000,000원) - 0개",
+                            "6개 일치 (2,000,000,000원) - 1개",
+                            "총 수익률은 200000000.0%입니다."
+                    );
+                },
+                List.of(1, 2, 3, 4, 5, 6)
+        );
     }
 
     @Test
     void 예외_테스트() {
         assertSimpleTest(() -> {
             runException("1000j");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+    @Test
+    void 예외_테스트_2() {
+        assertSimpleTest(() -> {
+            runException("1234"); // 1000으로 나누어 떨어지지 않으면 예외처리
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 예외_테스트_3() {
+        assertSimpleTest(() -> {
+            runException("1000","1,2,3,4,5,6,7,8,9", "7");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+    @Test
+    void 예외_테스트_4() {
+        assertSimpleTest(() -> {
+            runException("1000","a,b,c", "7");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
