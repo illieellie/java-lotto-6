@@ -29,7 +29,7 @@
 느낀점 
 1. 형변환 예 : string[] -> List<Integer> 로 자료형과 타입을 둘다 변경해야 할 때 쉽게 변환하는 방법 모색 필요
 2. 사용자가 제대로된 입력을 할때까지 -> 이렇게 구현을 하는게 맞는지, 더 좋은 방법이 있는지 확인 필요 
-3. 테스트 로직 만드는 게 어려움(assertThat, output 검색)
-4. pickUniqueNumbersInRange() -> List 결과 Collections.sort 안 되는 이유 
+3. pickUniqueNumbersInRange() -> List 결과 Collections.sort 안 되는 이유 찾기
+4. java enum을 어디에 적용해야할지 모르겠음  
 
 

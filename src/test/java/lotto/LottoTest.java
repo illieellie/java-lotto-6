@@ -9,6 +9,7 @@ import java.util.List;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
 import camp.nextstep.edu.missionutils.test.NsTest;
 
 
@@ -51,7 +52,7 @@ class LottoTest {
     void checkLottoGrade() {
         // TODO: 이 테스트가 통과할 수 있게 구현 코드 작성
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6)); // 당첨
-        int[] grade = {0,1,0,0,0,0,0};
+        int[] grade = {0, 1, 0, 0, 0, 0, 0};
 
         assertThat(lotto.result(grade, 1000)).isEqualTo(200000000.0);
 

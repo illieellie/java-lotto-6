@@ -67,14 +67,14 @@ public class InputView {
         }
     }
 
-    public static int bonusNumber() throws IllegalArgumentException{
+    public static int bonusNumber() throws IllegalArgumentException {
         int bonusNum = 0;
-            String s = readLine();
-            try {
-                bonusNum = Integer.parseInt(s);
-            } catch (NumberFormatException e) {
-                    throw new IllegalArgumentException();
-                }
+        String s = readLine();
+        try {
+            bonusNum = Integer.parseInt(s);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException();
+        }
         return bonusNum;
     }
 }

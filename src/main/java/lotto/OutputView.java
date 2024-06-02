@@ -5,13 +5,15 @@ import java.util.stream.Stream;
 
 public class OutputView {
 
-    public static void printMent1(){
+    public static void printMent1() {
         System.out.println("구입금액을 입력해 주세요.");
     }
-    public static void printMent2(){
+
+    public static void printMent2() {
         System.out.println("\n당첨 번호를 입력해 주세요.");
     }
-    public static void printMent3(){
+
+    public static void printMent3() {
         System.out.println("\n보너스 번호를 입력해 주세요.");
     }
 
@@ -29,11 +31,11 @@ public class OutputView {
                 "5개 일치 (1,500,000원) - " + result[3] + "개\n" +
                 "5개 일치, 보너스 볼 일치 (30,000,000원) - " + result[2] + "개\n" +
                 "6개 일치 (2,000,000,000원) - " + result[1] + "개";
-                System.out.println(s);
+        System.out.println(s);
     }
 
-    public static void printResult(double result){
-        System.out.println("총 수익률은 "+String.format("%.1f", result)+"%입니다.");
+    public static void printResult(double result) {
+        System.out.println("총 수익률은 " + String.format("%.1f", result) + "%입니다.");
 
     }
 

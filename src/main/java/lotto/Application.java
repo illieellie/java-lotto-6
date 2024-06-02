@@ -60,7 +60,7 @@ public class Application {
     }
 
 
-    public static List<Integer> inputGoalNumber(){
+    public static List<Integer> inputGoalNumber() {
         List<Integer> result = new ArrayList<>();
         while (true) {
             try {
