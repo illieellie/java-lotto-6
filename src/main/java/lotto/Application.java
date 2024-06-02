@@ -46,6 +46,7 @@ public class Application {
         OutputView.printResult(profitRate);
     }
 
+    // 정상적인 입력을 받을 때까지 실행을 해야할 때 어떤게 나은 방법인지 몰라 여러 방법으로 시도
     private static int inputBonusNumber() {
         int result = 0;
         while (true) {
@@ -60,7 +61,7 @@ public class Application {
     }
 
 
-    public static List<Integer> inputGoalNumber() {
+    private static List<Integer> inputGoalNumber() {
         List<Integer> result = new ArrayList<>();
         while (true) {
             try {

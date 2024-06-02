@@ -11,6 +11,7 @@ public class InputView {
     private InputView() {
     }
 
+    // 정상적인 입력을 받을 때까지 실행을 해야할 때 어떤게 나은 방법인지 몰라 여러 방법으로 시도
     public static int money() {
         while (true) {
             try {
