@@ -28,12 +28,12 @@ public class Application {
 
         // 당첨 번호 입력
         OutputView.printMent2();
-        List<Integer> goalNumber = inputGoalNumber();
+        List<Integer> goalNumber = InputView.goalNumber();
         Lotto lotto = new Lotto(goalNumber);
 
         // 보너스 번호 입력
         OutputView.printMent3();
-        int bonusNumber = inputBonusNumber();
+        int bonusNumber = InputView.bonusNumber(goalNumber);
 
         // 구매 번호 당첨 검사
         int[] result = new int[7];
@@ -46,31 +46,4 @@ public class Application {
         OutputView.printResult(profitRate);
     }
 
-    // 정상적인 입력을 받을 때까지 실행을 해야할 때 어떤게 나은 방법인지 몰라 여러 방법으로 시도
-    private static int inputBonusNumber() {
-        int result = 0;
-        while (true) {
-            try {
-                result = InputView.bonusNumber();
-                break;
-            } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR] 잘못된 값을 입력했습니다. 다시 입력해주세요.");
-            }
-        }
-        return result;
-    }
-
-
-    private static List<Integer> inputGoalNumber() {
-        List<Integer> result = new ArrayList<>();
-        while (true) {
-            try {
-                result = InputView.goalNumber();
-                break;
-            } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR] 잘못된 값을 입력했습니다. 다시 입력해주세요.");
-            }
-        }
-        return result;
-    }
 }

@@ -5,29 +5,24 @@ import java.util.List;
 import java.util.Set;
 
 import static camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange;
+import static lotto.LottoGrade.*;
 
 public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        validateDuplicate(numbers);
         this.numbers = numbers;
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
-        }
-    }
-
-    private void validateDuplicate(List<Integer> numbers) {
         Set<Integer> tempSet = new HashSet<>();
         tempSet.addAll(numbers);
         if (tempSet.size() != 6) {
             throw new IllegalArgumentException();
         }
     }
+
 
     public int checkGoal(int bonusNumber, List<Integer> list) {
         // List<Integer> numbers 와 비교
@@ -53,14 +48,14 @@ public class Lotto {
     }
 
     private int gradeCheck(int score) {
-        int[] arr = {0, 0, 0, 5, 4, 3, 2, 1};
-        return arr[score];
+        // 스코어에 따른 등급 반환
+        return LottoGrade.getGradeFromScore(score);
     }
 
     public double result(int[] result, int investmentMoney) {
-        double[] arr = {0, 2000000000, 30000000, 1500000, 50000, 5000};
-        double profits = result[1] * arr[1] + result[2] * arr[2] + result[3] * arr[3] +
-                result[4] * arr[4] + result[5] * arr[5];
+      //  double[] arr = {0, 2000000000, 30000000, 1500000, 50000, 5000};
+        double profits = result[1] * GRADE_1.getMoney()+ result[2] * GRADE_2.getMoney() + result[3] * GRADE_3.getMoney() +
+                result[4] * GRADE_4.getMoney() + result[5] * GRADE_5.getMoney();
         if (investmentMoney == 0) {
             return 0;
         }

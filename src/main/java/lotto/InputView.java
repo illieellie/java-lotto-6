@@ -6,76 +6,56 @@ import static camp.nextstep.edu.missionutils.Console.readLine;
 
 public class InputView {
     // 유틸성 클래스
-    static int amountOfMoney = 0;
+    private static int amountOfMoney = 0;
+    private static final int ONE_THOUSAND = 1000;
 
     private InputView() {
     }
 
-    // 정상적인 입력을 받을 때까지 실행을 해야할 때 어떤게 나은 방법인지 몰라 여러 방법으로 시도
     public static int money() {
         while (true) {
             try {
                 amountOfMoney = Integer.parseInt(readLine());
-                if (validationMoney(amountOfMoney)) {
-                    break;
-                }
-            } catch (NumberFormatException e) {
-                try {
+                if (amountOfMoney % ONE_THOUSAND != 0) {
                     throw new IllegalArgumentException();
-                } catch (IllegalArgumentException e2) {
-                    System.out.println("[ERROR] 잘못된 값을 입력했습니다. 다시 입력해주세요.");
                 }
+                return amountOfMoney;
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR] 잘못된 값을 입력했습니다. 다시 입력해주세요.");
             }
         }
-        return amountOfMoney;
     }
 
-    public static boolean validationMoney(int amountOfMoney) {
-        try {
-            if (amountOfMoney % 1000 != 0) {
-                throw new IllegalArgumentException();
+    public static List<Integer> goalNumber() {
+        Set result = new HashSet();
+        while (true) {
+            String[] s = readLine().split(",");
+            try {
+                for (int i = 0; i < s.length; i++) {
+                    result.add(Integer.parseInt(s[i])); // 예외 1. 숫자로 변환이 안 되는 경우
+                }
+                if (result.size() != 6) { // 예외 2. 숫자 6개가 맞는지
+                    throw new IllegalArgumentException();
+                }
+                return new ArrayList<>(result);
+            } catch (IllegalArgumentException e) { // NumberFormatException 는 IllegalArgumentException의 서브 클래스
+                System.out.println("[ERROR] 잘못된 값을 입력했습니다. 다시 입력해주세요.");
             }
-        } catch (IllegalArgumentException e) {
-            System.out.println("[ERROR] 잘못된 값을 입력했습니다. 다시 입력해주세요.");
-            return false;
-        }
-        return true;
-    }
-
-    public static List<Integer> goalNumber() throws IllegalArgumentException {
-        List<Integer> result = new ArrayList<>();
-        String[] s = readLine().split(",");
-        try {
-            // 변환하기 불편 string[] -> List<Integer>
-            for (int i = 0; i < s.length; i++) {
-                result.add(Integer.parseInt(s[i])); // 예외1. 숫자로 변환이 안 되는 경우
-            }
-            validationGoalNumber(result); // 예외2. 숫자 6개가 맞는지
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException();
-        } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException();
-        }
-        return result;
-    }
-
-    public static void validationGoalNumber(List<Integer> arrayList) throws IllegalArgumentException {
-        // 예외2. 숫자 여섯개가 맞는지
-        Set<Integer> tempSet = new HashSet<>();
-        tempSet.addAll(arrayList);
-        if (tempSet.size() != 6) {
-            throw new IllegalArgumentException();
         }
     }
 
-    public static int bonusNumber() throws IllegalArgumentException {
+    public static int bonusNumber(List<Integer> goalNumber) {
         int bonusNum = 0;
-        String s = readLine();
-        try {
-            bonusNum = Integer.parseInt(s);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException();
+        while (true) {
+            try {
+                bonusNum = Integer.parseInt(readLine());
+                if (goalNumber.contains(bonusNum)) {
+                    throw new IllegalArgumentException(); // 당첨 번호에 있는 번호와 중복되는 번호라면
+                }
+                return bonusNum;
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR] 잘못된 값을 입력했습니다. 다시 입력해주세요.");
+            }
         }
-        return bonusNum;
     }
 }

@@ -97,6 +97,29 @@ class ApplicationTest extends NsTest {
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
+    @Test
+    void 보너스넘버_예외_테스트() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,6", "ㅁ");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 당첨_번호_입력_테스트() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,6", "7");
+           assertThat(output()).contains("당첨 통계");
+        });
+    }
+
+    @Test
+    void 당첨_번호_보너스_번호_중복() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,6", "1");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
 
     @Override
     public void runMain() {

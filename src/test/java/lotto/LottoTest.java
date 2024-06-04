@@ -55,8 +55,6 @@ class LottoTest {
         int[] grade = {0, 1, 0, 0, 0, 0, 0};
 
         assertThat(lotto.result(grade, 1000)).isEqualTo(200000000.0);
-
     }
-
 
 }
