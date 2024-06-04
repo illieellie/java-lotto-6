@@ -35,26 +35,32 @@ class LottoTest {
     @Test
     void checkLottoNumber() {
         // TODO: 이 테스트가 통과할 수 있게 구현 코드 작성
-        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6)); // 당첨
-        assertThat(lotto.checkGoal(7, List.of(1, 2, 3, 4, 5, 6))).isEqualTo(1);
+
+        // 컴퓨터 넘버
+        Game game = new Game(new Lotto(List.of(1, 2, 3, 4, 5, 6)), 7); // 당첨번호, 보너스 번호
+
+        assertThat(game.checkGoal(new Lotto(List.of(1, 2, 3, 4, 5, 6)))).isEqualTo(1);
     }
 
     @DisplayName("번호가 몇개 일치하는 지 체크 후 등수를 반환한다.")
     @Test
     void checkLottoNumber2() {
         // TODO: 이 테스트가 통과할 수 있게 구현 코드 작성
-        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6)); // 당첨
-        assertThat(lotto.checkGoal(7, List.of(1, 2, 3, 4, 5, 8))).isEqualTo(3);
+        // 컴퓨터 넘버
+        Game game = new Game(new Lotto(List.of(1, 2, 3, 4, 5, 6)), 7); // 당첨번호, 보너스 번호
+
+        assertThat(game.checkGoal(new Lotto(List.of(1, 2, 3, 4, 5, 8)))).isEqualTo(3);
+
     }
 
     @DisplayName("수익률이 제대로 프린트 되는지 확인")
     @Test
     void checkLottoGrade() {
         // TODO: 이 테스트가 통과할 수 있게 구현 코드 작성
-        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6)); // 당첨
+        Game game = new Game(new Lotto(List.of(1, 2, 3, 4, 5, 6)), 7);
         int[] grade = {0, 1, 0, 0, 0, 0, 0};
 
-        assertThat(lotto.result(grade, 1000)).isEqualTo(200000000.0);
+        assertThat(game.result(grade, 1000)).isEqualTo(200000000.0);
     }
 
 }

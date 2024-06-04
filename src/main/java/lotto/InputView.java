@@ -44,12 +44,12 @@ public class InputView {
         }
     }
 
-    public static int bonusNumber(List<Integer> goalNumber) {
+    public static int bonusNumber(Lotto goalNumber) {
         int bonusNum = 0;
         while (true) {
             try {
                 bonusNum = Integer.parseInt(readLine());
-                if (goalNumber.contains(bonusNum)) {
+                if (goalNumber.isContain(bonusNum)) {
                     throw new IllegalArgumentException(); // 당첨 번호에 있는 번호와 중복되는 번호라면
                 }
                 return bonusNum;
