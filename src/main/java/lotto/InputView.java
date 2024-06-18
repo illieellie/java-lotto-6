@@ -6,10 +6,8 @@ import static camp.nextstep.edu.missionutils.Console.readLine;
 
 public class InputView {
     // 유틸성 클래스
-  
-    private static int amountOfMoney = 0; // 함수 부분으로 옮기기 
-    private static final int ONE_THOUSAND = 1000;
 
+    private static final int ONE_THOUSAND = 1000;
 
     private InputView() {
     }
@@ -18,7 +16,7 @@ public class InputView {
     public static int money() {
         while (true) {
             try {
-                amountOfMoney = Integer.parseInt(readLine());
+                int amountOfMoney = Integer.parseInt(readLine());
 
                 if (amountOfMoney % ONE_THOUSAND != 0) {
                     throw new IllegalArgumentException();
