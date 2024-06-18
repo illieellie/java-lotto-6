@@ -6,16 +6,20 @@ import static camp.nextstep.edu.missionutils.Console.readLine;
 
 public class InputView {
     // 유틸성 클래스
-    private static int amountOfMoney = 0;
+  
+    private static int amountOfMoney = 0; // 함수 부분으로 옮기기 
     private static final int ONE_THOUSAND = 1000;
+
 
     private InputView() {
     }
+
 
     public static int money() {
         while (true) {
             try {
                 amountOfMoney = Integer.parseInt(readLine());
+
                 if (amountOfMoney % ONE_THOUSAND != 0) {
                     throw new IllegalArgumentException();
                 }
@@ -57,5 +61,6 @@ public class InputView {
                 System.out.println("[ERROR] 잘못된 값을 입력했습니다. 다시 입력해주세요.");
             }
         }
+
     }
 }

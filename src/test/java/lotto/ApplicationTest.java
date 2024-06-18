@@ -97,6 +97,7 @@ class ApplicationTest extends NsTest {
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
+  
     @Test
     void 보너스넘버_예외_테스트() {
         assertSimpleTest(() -> {

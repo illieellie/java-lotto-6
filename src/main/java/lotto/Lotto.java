@@ -13,6 +13,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        validateDuplicate(numbers);
         this.numbers = numbers;
     }
 
@@ -39,3 +40,4 @@ public class Lotto {
         return numbers.get(idx);
     }
 }
+

@@ -29,6 +29,7 @@ public class Application {
 
         // 당첨 번호 입력
         OutputView.printMent2();
+
         Lotto goalNumber = new Lotto(InputView.goalNumber());
 
         // 보너스 번호 입력
